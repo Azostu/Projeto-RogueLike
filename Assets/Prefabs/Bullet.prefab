@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 377868286517511270}
   - component: {fileID: 377868286517511266}
   - component: {fileID: 6173203755889757151}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e5599f47df9d94ea557c7c1f537ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 2
 --- !u!58 &6173203755889757151
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -131,7 +130,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

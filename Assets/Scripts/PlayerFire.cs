@@ -10,10 +10,14 @@ public class PlayerFire : MonoBehaviour
     [SerializeField] float bulletSpeed;
     [SerializeField] float fireRate;
     [SerializeField] bool canShoot = true;
+    CircleCollider2D myCircleCollider2D;
+    SpriteRenderer spriteRenderer;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        myCircleCollider2D= GetComponent<CircleCollider2D>();
+        spriteRenderer= GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -34,7 +38,7 @@ public class PlayerFire : MonoBehaviour
 
         canShoot = false;
         Vector2 bulletDirection = value.Get<Vector2>();
-        Vector2 bulletSpawnDelta = transform.localScale * bulletDirection;
+        Vector2 bulletSpawnDelta = (transform.localScale * spriteRenderer.size) * bulletDirection;
         Vector3 bulletSpawnPosition = transform.position + new Vector3(bulletSpawnDelta.x, bulletSpawnDelta.y, 0);
         GameObject ins = Instantiate(bullet, bulletSpawnPosition, transform.rotation);
         ins.GetComponent<Rigidbody2D>().velocity = bulletDirection * bulletSpeed;
