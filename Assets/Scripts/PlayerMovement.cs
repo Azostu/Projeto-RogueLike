@@ -30,4 +30,5 @@ public class PlayerMovement : MonoBehaviour
     void Run(){
         myRigidBody.velocity = moveInput * speed;
     }
+
 }
