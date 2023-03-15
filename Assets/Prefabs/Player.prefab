@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 5808578382507926066}
   - component: {fileID: 5808578382507926065}
   - component: {fileID: 1923748457}
+  - component: {fileID: 1923748458}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,7 +182,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1097288ad2a98264aa366d56299c943e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
-  bulletSpeed: 3
-  fireRate: 0.5
+  bullet: {fileID: 377868286517511269, guid: d94eb23ea049bcb449d9d1b982354652, type: 3}
+  bulletSpeed: 10
+  fireRate: 0.2
   canShoot: 1
+--- !u!114 &1923748458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5808578382507926071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ec71bf59420e85479b1e12a08c0998e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10

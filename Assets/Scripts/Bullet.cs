@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
 
     Rigidbody2D myRigidbody;
+    [SerializeField] float damage = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +20,14 @@ public class Bullet : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Enemy"))
+        {
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+        }
         Destroy(gameObject);
     }
-    
+
 }

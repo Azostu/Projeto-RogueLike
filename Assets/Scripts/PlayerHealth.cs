@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerHealth : MonoBehaviour
 {
 
-    int health;
-    [SerializeField] int maxHealth = 10;
+    float health;
+    [SerializeField] float maxHealth = 10;
+    Dictionary<String, int> items = new Dictionary<String, int>();
 
     // Start is called before the first frame update
     void Start()
@@ -21,19 +23,51 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            Application.Quit();
         }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (collision.gameObject.tag.Equals("Item"))
         {
-            LoseHealth(1);
+            if (!items.ContainsKey(collision.gameObject.name))
+            {
+                items.Add(collision.gameObject.name, 1);
+            }
+            else
+            {
+                items[collision.gameObject.name]++;
+            }
+
+            Destroy(collision.gameObject);
         }
     }
 
-    private void LoseHealth(int healthLosed)
+    public void LoseHealth(float healthLosed)
     {
         health -= healthLosed;
     }
+
+    public void GainHealth(float healthGain){
+        health += healthGain;
+        if(health > maxHealth){
+            health = maxHealth;
+        }
+    }
+
+    void OnHeal(InputValue value)
+    {
+        if (items.ContainsKey("Potion"))
+        {
+            if (items["Potion"] > 0)
+            {
+                GainHealth(5);
+                items["Potion"]--;
+            }
+        }
+    }
+
+
 }
