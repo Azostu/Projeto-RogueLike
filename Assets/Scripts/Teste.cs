@@ -24,7 +24,7 @@ public class Teste : MonoBehaviour
 
         if(collision.gameObject.tag.Equals("Player")){
 
-            collision.gameObject.GetComponent<PlayerHealth>().LoseHealth(damage);
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
         
     }

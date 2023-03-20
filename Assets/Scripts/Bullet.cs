@@ -23,11 +23,26 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Equals("Enemy"))
+        switch (collision.gameObject.tag)
         {
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            case "Enemy":
+                collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+                break;
+            case "Player":
+                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+                break;
+            default: 
+                break;
         }
+
         Destroy(gameObject);
+
+
+
+    }
+
+    public void SetDamage(float damage){
+        this.damage = damage;
     }
 
 }
