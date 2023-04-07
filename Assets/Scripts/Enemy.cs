@@ -45,14 +45,13 @@ public class Enemy : MonoBehaviour
         {
             target = player.transform;
             direction = target.position - transform.position;
-            Debug.Log("Target position " + target.position + " Enemy Position " + transform.position);
+
             if (direction.magnitude < 25)
             {
                 myRigidBody.velocity = direction.normalized * speed;
-                if (direction.magnitude <= 20 && enemyType == 1 && canShoot)
+                if (direction.magnitude <= 13 && enemyType == 1 && canShoot)
                 {
-                    myRigidBody.velocity = new Vector2(0, 0);
-                    StartCoroutine(Fire(direction));
+                    StartCoroutine(Fire(direction.normalized));
                 }
                     
             }   
@@ -78,7 +77,6 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Fire(Vector3 direction){
 
-        Debug.Log("Enemy Positon: " + transform.position);
         canShoot = false;
         Vector2 bulletSpawnDelta = (transform.localScale * spriteRenderer.size) * direction;
         Vector3 bulletSpawnPosition = transform.position + new Vector3(bulletSpawnDelta.x, bulletSpawnDelta.y, 0);
