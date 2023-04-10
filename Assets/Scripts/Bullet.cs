@@ -28,6 +28,8 @@ public class Bullet : MonoBehaviour
             case "Player":
                 collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
                 break;
+            case "Crate":
+                Destroy(collision.gameObject); break;
             default: 
                 break;
         }
