@@ -9,22 +9,26 @@ public class UIDisplay : MonoBehaviour
     [Header("Health")]
     [SerializeField] Slider healthSlider;
     [SerializeField] PlayerHealth playerHealth;
+    [SerializeField] TextMeshProUGUI potions;
+    string baseTextPotions;
 
     [Header("Coins")]
     [SerializeField] TextMeshProUGUI coins;
     [SerializeField] CoinCollector coinCollector;
-    string baseText;
+    string baseTextCoins;
 
     void Start()
     {
         healthSlider.maxValue = playerHealth.GetMaxHealth();
-        baseText = "Coins: ";
+        baseTextCoins = "Coins: ";
+        baseTextPotions = "Potions: ";
         
     }
 
     void Update()
     {
         healthSlider.value = playerHealth.GetHealth();
-        coins.text = baseText + coinCollector.GetCoins();
+        coins.text = baseTextCoins + coinCollector.GetCoins();
+        potions.text = baseTextPotions + playerHealth.GetPotions();
     }
 }

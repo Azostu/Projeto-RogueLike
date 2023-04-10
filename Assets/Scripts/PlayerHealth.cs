@@ -77,5 +77,12 @@ public class PlayerHealth : MonoBehaviour
         return maxHealth;
     }
 
-
+    internal int GetPotions()
+    {
+        if (items.ContainsKey("Potion"))
+        {
+            return items["Potion"];
+        }
+        return 0;
+    }
 }
