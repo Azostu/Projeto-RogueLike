@@ -5,22 +5,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerFire : MonoBehaviour
 {
+    [Header("General")]
+    SpriteRenderer spriteRenderer;
 
+    [Header("Damage")]
     [SerializeField] GameObject bullet;
     [SerializeField] float bulletSpeed;
     [SerializeField] float fireRate;
     [SerializeField] bool canShoot = true;
-    CircleCollider2D myCircleCollider2D;
-    SpriteRenderer spriteRenderer;
     
-    // Start is called before the first frame update
+    
     void Start()
     {
-        myCircleCollider2D= GetComponent<CircleCollider2D>();
         spriteRenderer= GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         

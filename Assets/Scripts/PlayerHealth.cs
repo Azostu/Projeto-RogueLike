@@ -6,18 +6,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerHealth : MonoBehaviour
 {
-
+    [Header("Health")]
     float health;
     [SerializeField] float maxHealth = 10;
+
+    [Header("Items")]
     Dictionary<String, int> items = new Dictionary<String, int>();
 
-    // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (health <= 0)
@@ -27,18 +27,17 @@ public class PlayerHealth : MonoBehaviour
         }
         
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Item"))
         {
-            if (!items.ContainsKey(collision.gameObject.name))
+            if (!items.ContainsKey(LayerMask.LayerToName(collision.gameObject.layer)))
             {
-                items.Add(collision.gameObject.name, 1);
+                items.Add(LayerMask.LayerToName(collision.gameObject.layer), 1);
             }
             else
             {
-                items[collision.gameObject.name]++;
+                items[LayerMask.LayerToName(collision.gameObject.layer)]++;
             }
 
             Destroy(collision.gameObject);

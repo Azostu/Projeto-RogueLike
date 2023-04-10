@@ -6,22 +6,30 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    [SerializeField] float damage = 1;
+    [Header("General")]
     [SerializeField] float health = 1;
     [SerializeField] float speed = 1;
     [SerializeField] int enemyType = 0;
+    Rigidbody2D myRigidBody;
+    SpriteRenderer spriteRenderer;
+
+    [Header("Damage")]
+    [SerializeField] float damage = 1;
     [SerializeField] float bulletSpeed = 1;
     [SerializeField] GameObject bullet;
     [SerializeField] float fireRate = 0;
-    Rigidbody2D myRigidBody;
+    bool canShoot = true;
+
+    [Header("Items")]
+    [SerializeField] GameObject coin;
+    [SerializeField] GameObject potion;
+
+    [Header("Movement")]
     GameObject player;
     Transform target;
     Vector3 direction;
-    bool canShoot = true;
-    SpriteRenderer spriteRenderer;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
@@ -29,7 +37,6 @@ public class Enemy : MonoBehaviour
         spriteRenderer= GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(health <= 0)
@@ -38,6 +45,29 @@ public class Enemy : MonoBehaviour
         Move();
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+        }
+
+    }
+
+    private void OnDestroy()
+    {
+        int rand = Random.Range(0, 6);
+
+        switch (rand)
+        {
+            case 0: Instantiate(coin, transform.position, transform.rotation); break;
+            case 5: Instantiate(potion, transform.position, transform.rotation); break;
+            default: break;
+        }
+
+    }
 
     private void Move()
     {
@@ -61,21 +91,8 @@ public class Enemy : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        
-        if(collision.gameObject.tag.Equals("Player")){
-
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
-        }
-
-    }
-
-    public void TakeDamage(float damageTaken)
+    IEnumerator Fire(Vector3 direction)
     {
-        health -= damageTaken;
-    }
-
-    IEnumerator Fire(Vector3 direction){
 
         canShoot = false;
         Vector2 bulletSpawnDelta = (transform.localScale * spriteRenderer.size) * direction;
@@ -87,4 +104,10 @@ public class Enemy : MonoBehaviour
         canShoot = true;
 
     }
+
+    public void TakeDamage(float damageTaken)
+    {
+        health -= damageTaken;
+    }
+
 }
