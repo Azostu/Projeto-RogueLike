@@ -40,7 +40,6 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkGeneretor
 
         for (int i = 0; i < corridors.Count; i++)
         {
-            //corridors[i] = IncreaseCorridorSizeByOne(corridors[i]);
             corridors[i] = IncreaseCorridorBrush3by3(corridors[i]);
             floorPositions.UnionWith(corridors[i]);
 
@@ -67,46 +66,6 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkGeneretor
         return newCorridor;
     }
 
-    private List<Vector2Int> IncreaseCorridorSizeByOne(List<Vector2Int> corridor)
-    {
-        List<Vector2Int> newCorridor = new List<Vector2Int>();
-        Vector2Int previousDirection = Vector2Int.zero;
-        for (int i = 1; i < corridor.Count; i++)
-        {
-            Vector2Int directionFromCell = corridor[i] - corridor[i - 1];
-            if (previousDirection != Vector2Int.zero && directionFromCell != previousDirection)
-            {
-                for (int x = -1; x < 2; x++)
-                {
-                    for (int y = -1; y < 2; y++)
-                    {
-                        newCorridor.Add(corridor[i - 1] + new Vector2Int(x, y));
-                    }
-                }
-                previousDirection = directionFromCell;
-            }
-            else
-            {
-                Vector2Int newCorridorTileOffset = GetDirection90From(directionFromCell);
-                newCorridor.Add(corridor[i - 1]);
-                newCorridor.Add(corridor[i - 1] + newCorridorTileOffset);
-            }
-        }
-
-        return newCorridor;
-    }
-
-    private Vector2Int GetDirection90From(Vector2Int directionFromCell)
-    {
-        switch (directionFromCell)
-        {
-            case var value when value == Vector2Int.up: return Vector2Int.right;
-            case var value when value == Vector2Int.down: return Vector2Int.left;
-            case var value when value == Vector2Int.right: return Vector2Int.down;
-            case var value when value == Vector2Int.left: return Vector2Int.up;
-            default: return Vector2Int.zero;
-        }
-    }
 
     private void CreateRoomsAtDeadEnds(List<Vector2Int> deadEnds, HashSet<Vector2Int> roomPositions)
     {
