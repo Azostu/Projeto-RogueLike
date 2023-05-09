@@ -16,6 +16,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         health = maxHealth;
+        
     }
 
     void Update()
