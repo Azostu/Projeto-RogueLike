@@ -44,8 +44,9 @@ public static class Direction2D
     {
         new Vector2Int(0,1),
         new Vector2Int(1,0),
-        new Vector2Int(-1,0),
-        new Vector2Int(0,-1)
+        new Vector2Int(0,-1),
+        new Vector2Int(-1,0)
+        
     };
 
     public static List<Vector2Int> diagonalDirectionsList = new List<Vector2Int>

@@ -32,11 +32,11 @@ public class TilemapVisualizer : MonoBehaviour
         TileBase tile = null;
         if (WallTypesHelper.wallTop.Contains(typeAsInt))
         {
-            tile = wallSideRight;
+            tile = wallTop;
         }
         else if (WallTypesHelper.wallSideRight.Contains(typeAsInt))
         {
-            tile = wallTop;
+            tile = wallSideRight;
         }
         else if (WallTypesHelper.wallSideLeft.Contains(typeAsInt))
         {
