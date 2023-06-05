@@ -12,6 +12,9 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkGeneretor
     [Range(0.1f, 1)]
     private float roomPercent = 0.8f;
 
+    [SerializeField]
+    private EnemySpawner enemySpawner;
+
     private void Start()
     {
         GenerateDungeon();
@@ -46,6 +49,8 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkGeneretor
         }
 
         tileMapVisualizer.PaintFloorTiles(floorPositions);
+        enemySpawner.EnemySpawning(roomPositions);
+
         WallGenerator.CreateWalls(floorPositions, tileMapVisualizer);
     }
 
