@@ -35,6 +35,7 @@ public class EnemySpawner : MonoBehaviour
     public void EnemySpawning(HashSet<Vector2Int> rooms)
     {
         int numberEnemies = Mathf.RoundToInt(rooms.Count * percentageEnemies);
+
         List<Vector2Int> enemiesPositions = rooms.OrderBy(x => Guid.NewGuid()).Take(numberEnemies).ToList();
         
 

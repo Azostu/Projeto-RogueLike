@@ -28,6 +28,7 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkGeneretor
 
     private void CorridorFirstGeneration()
     {
+        CleanGameObjects();
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
         HashSet<Vector2Int> potencialRoomPositions = new HashSet<Vector2Int>();
 
@@ -49,9 +50,29 @@ public class CorridorFirstDungeonGeneration : SimpleRandomWalkGeneretor
         }
 
         tileMapVisualizer.PaintFloorTiles(floorPositions);
+
         enemySpawner.EnemySpawning(roomPositions);
 
         WallGenerator.CreateWalls(floorPositions, tileMapVisualizer);
+    }
+
+    private void CleanGameObjects()
+    {
+        List<GameObject> enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+        List<GameObject> items = GameObject.FindGameObjectsWithTag("Item").ToList();
+        foreach (GameObject item in items)
+        {
+            Destroy(item);
+        }
+        List<GameObject> coins = GameObject.FindGameObjectsWithTag("Coin").ToList();
+        foreach (GameObject coin in coins)
+        {
+            Destroy(coin);
+        }
     }
 
     private List<Vector2Int> IncreaseCorridorBrush3by3(List<Vector2Int> corridor)
