@@ -9,6 +9,15 @@ TagManager:
   - Coin
   - Terrain
   - Crate
+  - Panel
+  - Armor
+  - Bullet
+  - Gun
+  - Potion
+  - BArmor
+  - BBullet
+  - BGun
+  - BPotion
   layers:
   - Default
   - TransparentFX
@@ -22,7 +31,7 @@ TagManager:
   - Terrain
   - Potion
   - Coin
-  - 
+  - Boss
   - 
   - 
   - 

@@ -31,4 +31,9 @@ public class CoinCollector : MonoBehaviour
     {
         return numberCoins;
     }
+
+    public void UseCoins(int amount)
+    {
+        numberCoins -= amount;
+    }
 }

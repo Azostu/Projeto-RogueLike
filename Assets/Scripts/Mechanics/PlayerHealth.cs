@@ -14,6 +14,9 @@ public class PlayerHealth : MonoBehaviour
     [Header("Items")]
     Dictionary<String, int> items = new Dictionary<String, int>();
 
+    [Header("Death")]
+    [SerializeField] GameObject canvas;
+
     void Start()
     {
         health = maxHealth;
@@ -24,8 +27,10 @@ public class PlayerHealth : MonoBehaviour
     {
         if (health <= 0)
         {
+           
+            canvas.GetComponent<UIDisplay>().OnDeath();
             Destroy(gameObject);
-            SceneManager.LoadScene(4);
+
         }
         
     }
@@ -46,6 +51,8 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    
+
     public void TakeDamage(float healthLosed)
     {
         health -= healthLosed;
@@ -64,7 +71,7 @@ public class PlayerHealth : MonoBehaviour
         {
             if (items["Potion"] > 0)
             {
-                GainHealth(5);
+                GainHealth(3);
                 items["Potion"]--;
             }
         }
@@ -86,5 +93,23 @@ public class PlayerHealth : MonoBehaviour
             return items["Potion"];
         }
         return 0;
+    }
+
+    public void IncreaseMaxHealth(float multiplier)
+    {
+        maxHealth *= multiplier;
+        health = maxHealth;
+    }
+
+    public void BuyPotion()
+    {
+        if (items.ContainsKey("Potion"))
+        {
+            items["Potion"]++;
+        }
+        else
+        {
+           items.Add("Potion", 1);
+        }
     }
 }

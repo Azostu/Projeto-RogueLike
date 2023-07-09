@@ -15,7 +15,13 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
         tileMapVisualizer.Clear();
         RunProceduralGeneration();
     }
+    public void GenerateDungeonWithoutEnemies()
+    {
+        tileMapVisualizer.Clear();
+        RunProceduralGenerationWithoutEnemies();
+    }
 
     protected abstract void RunProceduralGeneration();
-    
+    protected abstract void RunProceduralGenerationWithoutEnemies();
+
 }

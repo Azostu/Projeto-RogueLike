@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf6cff06feeb7146b27ab31807866ab, type: 3}
   m_Name: Rooms
   m_EditorClassIdentifier: 
-  iterations: 75
-  walkLength: 75
+  iterations: 200
+  walkLength: 35
   startRandomlyEachIteration: 1

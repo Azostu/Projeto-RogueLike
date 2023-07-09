@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [Header("Damage")]
-    [SerializeField] float damage = 1.0f;
+    [SerializeField] float damage;
 
     void Start()
     {
@@ -43,5 +43,7 @@ public class Bullet : MonoBehaviour
     public void SetDamage(float damage){
         this.damage = damage;
     }
+
+    
 
 }
